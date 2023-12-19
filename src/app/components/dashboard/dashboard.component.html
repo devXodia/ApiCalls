@@ -1,0 +1,54 @@
+<div class="main-container">
+  <div class="header">
+    <h1>Nextly Solutions Dashboard</h1>
+  </div>
+  <div class="content">
+    <div class="weather-container">
+      <div class="title">
+        <h2>Weather</h2>
+      </div>
+      <div class="api-content">
+        @for(day of weatherData; track day; let i = $index;){
+
+        <div class="day">
+          {{ futureDates[i] }} - {{ day.temp2m }} Grad -
+          <span>{{ day.weather }}</span> - @if(day.prec_type == "none"){
+          <span>Kein Regen</span>
+          } @else { <span>voraussichtl. Regen</span> }
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="commute-container">
+      <div class="title">
+        <h2>Commute</h2>
+      </div>
+    </div>
+
+    <div class="bitcoin-container">
+      <div class="title">
+        <h2>Bitcoin</h2>
+      </div>
+      <div class="api-content">
+        @if(finishedLoading){
+        <span class="time"
+          >Updated Time at: {{ availableCoin.time.updated }}</span
+        >
+        <div class="coin">
+          {{ availableCoin.bpi.EUR.description }}:
+          {{ availableCoin.bpi.EUR.rate }} €
+        </div>
+        <div class="coin">
+          {{ availableCoin.bpi.USD.description }}:
+          {{ availableCoin.bpi.USD.rate }} $
+        </div>
+        <div class="coin">
+          {{ availableCoin.bpi.GBP.description }}:
+          {{ availableCoin.bpi.GBP.rate }} £
+        </div>
+        } @else { Loading... }
+      </div>
+    </div>
+  </div>
+</div>

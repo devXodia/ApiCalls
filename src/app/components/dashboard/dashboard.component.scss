@@ -1,0 +1,63 @@
+.main-container {
+  display: flex;
+  height: 100dvh;
+  width: 100dvw;
+  max-width: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 150px;
+}
+
+.api-content {
+  overflow: scroll;
+}
+
+.weather-container,
+.commute-container,
+.bitcoin-container {
+  height: 35%;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.time {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.api-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
