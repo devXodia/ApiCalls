@@ -21,7 +21,6 @@ export class CommuteService {
         parseString(xmlString, (err, result) => {
           if (!err) {
             this.commuteData = result.ResC.SBRes[0].JourneyList[0].Journey;
-            console.log(this.commuteData);
           } else {
             console.error('Error parsing:', err);
           }

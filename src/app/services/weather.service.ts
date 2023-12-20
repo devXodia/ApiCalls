@@ -3,14 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
+interface WeatherData {
+  dataseries: {
+    timepoint: number;
+    // other relevant properties...
+  }[];
+  // other relevant properties...
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
-  weatherJSON: any = '';
+  weatherJSON: Partial<WeatherData> = {};
   middayWeatherData: any;
   currentDate: Date;
   futureDates: string[] = [];
+
   constructor(public http: HttpClient, private datePipe: DatePipe) {
     this.currentDate = new Date();
   }
@@ -25,7 +34,8 @@ export class WeatherService {
         'https://www.7timer.info/bin/civil.php?lon=9.155690577416188&lat=49.9761904564259&ac=0&unit=metric&output=json&tzshift=0';
       let weatherDetails = await lastValueFrom(this.http.get(url));
       this.weatherJSON = weatherDetails;
-      this.middayWeatherData = this.weatherJSON.dataseries.filter(
+
+      this.middayWeatherData = this.weatherJSON.dataseries?.filter(
         (item: any) => item.timepoint % 24 === 12
       );
     } catch (e) {

@@ -2,11 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
+interface BitcoinData {
+  bpi: {};
+  chartname: {};
+  disclaimer: string;
+  time: {};
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class BitcoinService {
-  pricesJSON: any = '';
+  pricesJSON: Partial<BitcoinData> = {};
 
   constructor(public http: HttpClient) {}
 
