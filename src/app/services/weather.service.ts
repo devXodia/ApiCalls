@@ -4,11 +4,24 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
 interface WeatherData {
-  dataseries: {
-    timepoint: number;
-    // other relevant properties...
-  }[];
-  // other relevant properties...
+  product: string;
+  init: string;
+  dataseries: WeatherDataPoint[];
+}
+
+interface WeatherDataPoint {
+  timepoint: number;
+  cloudcover: number;
+  lifted_index: number;
+  prec_type: string;
+  prec_amount: number;
+  temp2m: number;
+  rh2m: string;
+  wind10m: {
+    direction: string;
+    speed: number;
+  };
+  weather: string;
 }
 
 @Injectable({
@@ -34,7 +47,7 @@ export class WeatherService {
         'https://www.7timer.info/bin/civil.php?lon=9.155690577416188&lat=49.9761904564259&ac=0&unit=metric&output=json&tzshift=0';
       let weatherDetails = await lastValueFrom(this.http.get(url));
       this.weatherJSON = weatherDetails;
-
+      console.log(weatherDetails);
       this.middayWeatherData = this.weatherJSON.dataseries?.filter(
         (item: any) => item.timepoint % 24 === 12
       );
